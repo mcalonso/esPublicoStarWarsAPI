@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <title>Star Wars API</title>
+  </head>
+  <body>
+		<div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
+		    <a class="navbar-brand" href="#">Star Wars API</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarCollapse">
+		        <ul class="navbar-nav mr-auto">
+		            <li class="nav-item active">
+		                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/films/}">Films</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/people/}">Characters</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/starships/}">Starships</a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+		
+		<main role="main" class="container">
+		    <div class="jumbotron text-center">
+		        <h1>Star Wars API</h1>
+		        <p class="lead text-info">Click on the following button to download the data</p>
+		        <a  th:if="${countFilms}" class="btn btn-dark" th:href="@{/films/getFilms/}" role="button">Download films</a>
+		        <a  th:if="${!countFilms}"class="btn btn-dark disabled" role="button" aria-disabled="true">Download films</a>
+		        <a  th:if="${countPeople}"class="btn btn-dark" th:href="@{/people/getPeople/}" role="button" th:disabled="${countPeople}">Download characters</a>
+		        <a  th:if="${!countPeople}"class="btn btn-dark disabled" role="button" aria-disabled="true">Download characters</a>
+		        <a  th:if="${countStarships}"class="btn btn-dark" th:href="@{/starships/getStarships/}" role="button" th:disabled="${countStarships}">Download starships</a>
+		        <a  th:if="${!countStarships}"class="btn btn-dark disabled" role="button" aria-disabled="true">Download starships</a>
+		    </div>
+		    <div class="jumbotron text-center">
+		    <p class="lead text-info">Click on the following button to see the list of people with the number of films in which they appear and the list of their titles</p>
+		        <a class="btn btn-dark" th:href="@{/people/summaryPeople/}" role="button">List of characters by movies</a>
+		    </div>
+		</main>
+  </body>
+</html>

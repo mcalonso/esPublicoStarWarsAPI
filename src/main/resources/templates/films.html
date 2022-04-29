@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <title>Star Wars API</title>
+  </head>
+  <body>
+		<div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
+		    <a class="navbar-brand" href="#">Star Wars API</a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarCollapse">
+		        <ul class="navbar-nav mr-auto">
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+		            </li>
+		            <li class="nav-item active">
+		                <a class="nav-link" href="#">Films</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/people/}">Characters</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" th:href="@{/starships/}">Starships</a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+		
+		    <div class="jumbotron text-center">
+		        <div class="table-responsive">
+		        	<h1>Films</h1>
+			        <form th:action="@{/people/summaryPilot}" method="get">
+			        	<div>
+				        	<button type="submit" class="btn btn-dark">Send selection</button>
+			        	</div>
+				        <table class="table custom-table">
+				          <thead>
+				            <tr>
+				              <th scope="col">Title</th>
+				              <th scope="col">Episode</th>
+				              <th scope="col">Opening Crawl</th>
+				              <th scope="col">Director</th>
+				              <th scope="col">Producer</th>
+				              <th scope="col">Release Data</th>
+				              <th scope="col">Created</th>
+				              <th scope="col">Edited</th>
+				              <th scope="col">URL</th>
+				            </tr>
+				          </thead>
+				          <tbody>
+				            <tr th:each="film : ${listFilms}">
+					            <td>
+						       		<input type="checkbox" name="fieldIdList" data-target="requests-all" 
+						                   th:value="${film.id}"/>
+						        </td>
+				              	<td th:text="${film.title}"></td>
+				            	<td th:text="${film.episodeId}"></td>
+				            	<td th:text="${film.openingCrawl}"></td>
+				            	<td th:text="${film.director}"></td>
+				            	<td th:text="${film.producer}"></td>
+				            	<td th:text="${film.releaseDate}"></td>
+				            	<td th:text="${film.created}"></td>
+				            	<td th:text="${film.edited}"></td>
+				            	<td th:text="${film.url}"></td>
+				            </tr>
+				            
+				          </tbody>
+				        </table>
+					</form>
+			      </div>
+		    </div>
+  </body>
+</html>
